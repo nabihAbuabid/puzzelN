@@ -78,4 +78,117 @@ public class PuzzelNTest {
         assertFalse(isSolvable);
     }
 
+    @Test
+    public void moveUP() {
+        // 3 2
+        // 1 0
+        PuzzelN puzzelN1 = new PuzzelN(2);
+        int input1[] = {3, 2, 1, 0};
+        puzzelN1.fill(input1);
+        boolean status = puzzelN1.moveTileUp(0, 0);
+        assertFalse(status);
+
+        //Move out of range
+        status = puzzelN1.moveTileUp(-1, 4);
+        assertFalse(status);
+
+        //Move to non blank
+        status = puzzelN1.moveTileUp(0, 1);
+        assertFalse(status);
+
+        status = puzzelN1.moveTileUp(1, 1);
+        assertFalse(status);
+    }
+
+    @Test
+    public void moveDown() {
+        // 3 2
+        // 1 0
+        PuzzelN puzzelN1 = new PuzzelN(2);
+        int input1[] = {3, 2, 1, 0};
+        puzzelN1.fill(input1);
+        boolean status = puzzelN1.moveTileDown(1, 0);
+        assertFalse(status);
+
+        //Move out of range
+        status = puzzelN1.moveTileDown(-1, 4);
+        assertFalse(status);
+
+        //Move to non blank
+        status = puzzelN1.moveTileDown(0, 0);
+        assertFalse(status);
+
+        //Good move
+        status = puzzelN1.moveTileDown(0, 1);
+        assertTrue(status);
+    }
+
+    @Test
+    public void moveLeft() {
+        // 3 2
+        // 1 0
+        PuzzelN puzzelN1 = new PuzzelN(2);
+        int input1[] = {3, 2, 1, 0};
+        puzzelN1.fill(input1);
+        boolean status = puzzelN1.moveTileLeft(0, 0);
+        assertFalse(status);
+
+        //Move out of range
+        status = puzzelN1.moveTileLeft(-1, 4);
+        assertFalse(status);
+
+        //Move to non blank
+        status = puzzelN1.moveTileLeft(0, 1);
+        assertFalse(status);
+    }
+
+    @Test
+    public void moveRight() {
+        // 3 2
+        // 1 0
+        PuzzelN puzzelN1 = new PuzzelN(2);
+        int input1[] = {3, 2, 1, 0};
+        puzzelN1.fill(input1);
+        boolean status = puzzelN1.moveTileRight(0, 1);
+        assertFalse(status);
+
+        //Move out of range
+        status = puzzelN1.moveTileRight(-1, 4);
+        assertFalse(status);
+
+        //Move to non blank
+        status = puzzelN1.moveTileRight(0, 0);
+        assertFalse(status);
+
+        //Good move
+        status = puzzelN1.moveTileRight(1, 0);
+        assertTrue(status);
+    }
+
+    @Test
+    public void isDone() {
+        // 0 1
+        // 2 3
+        PuzzelN puzzelN1 = new PuzzelN(2);
+        int input1[] = {0, 1, 2, 3};
+        puzzelN1.fill(input1);
+        boolean status = puzzelN1.isDone();
+        assertFalse(status);
+
+        // 3 2
+        // 1 0
+        PuzzelN puzzelN2 = new PuzzelN(2);
+        int input2[] = {3, 2, 1, 0};
+        puzzelN2.fill(input2);
+        status = puzzelN2.isDone();
+        assertFalse(status);
+
+        // 1 2
+        // 3 0
+        PuzzelN puzzelN3 = new PuzzelN(2);
+        int input3[] = {1, 2, 3, 0};
+        puzzelN3.fill(input3);
+        status = puzzelN3.isDone();
+        assertTrue(status);
+    }
 }
